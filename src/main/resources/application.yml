@@ -32,6 +32,12 @@ spring:
       multipart:
         max-file-size: 100MB
         max-request-size: 100MB
+
+    web:
+      cors:
+      allowed-origins: http://localhost:8080
+      allowed-methods: "*"
+
 #  ssl:
 #    bundle:
 #      jks:
