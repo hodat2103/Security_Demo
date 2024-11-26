@@ -1,0 +1,67 @@
+#spring.application.name=CourseManagement
+server:
+port: 8080
+#ssl:
+#  enabled: true
+#  key-store: classpath:keystore.p12
+#  key-store-password: tadaboh2103 #key_store
+#  key-store-type: PKCS12
+#  key-alias: https_cert
+#  key-password: tadaboh2103 #private_key
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/transactionhistory_db?useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: ${MYSQL_DB_PASSWORD}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+        transaction:
+          jta:
+            platform: org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform
+    serialization:
+      fail-on-empty-beans: false
+    servlet:
+      multipart:
+        max-file-size: 100MB
+        max-request-size: 100MB
+#  ssl:
+#    bundle:
+#      jks:
+#        server:
+#          key:
+#            alias: "server"
+#          keystore:
+#            location: "classpath:server.p12"
+#            password: "secret"
+#            type: "PKCS12"
+#      pem:
+#        client:
+#          truststore:
+#            certificate: "classpath:client.crt"
+openapi:
+  service:
+    api-docs: api-service
+    server: http://localhost:8080
+    title: API Service
+    version: 1.0.0
+
+    logging:
+      file:
+        name: resources/logs.application.log
+      level:
+        root: info
+api:
+  prefix: api/v1/
+
+aes:
+  encryption:
+    key: this-is-test-key
+
